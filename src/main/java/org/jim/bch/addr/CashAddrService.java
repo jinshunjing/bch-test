@@ -71,10 +71,11 @@ public class CashAddrService {
         String[] addressParts = cashAddress.split(SEPARATOR);
         if (addressParts.length == 2) {
             decoded.setPrefix(addressParts[0]);
+            cashAddress = addressParts[1];
         }
 
         // address
-        byte[] addressData = CashBase32.decode(addressParts[1]);
+        byte[] addressData = CashBase32.decode(cashAddress);
         addressData = Arrays.copyOfRange(addressData, 0, addressData.length - 8);
         addressData = CashUtils.convertBits(addressData, 5, 8, true);
 
